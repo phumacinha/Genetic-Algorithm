@@ -18,7 +18,7 @@ class GeneticAlgorithm(object):
 
         while len(population) < population_size:
             chromo = Chromosome.random(num_of_genes = 5)
-            self.adjust_chromosome_value(chromo)
+            self.adjust_chromosome_genes(chromo)
             population.append(chromo)
 
         return population
@@ -63,12 +63,12 @@ class GeneticAlgorithm(object):
         index = population_fitness.index(max(population_fitness))
         return population[index]
 
-    def adjust_chromosome_value(self, chromosome:Chromosome):
+    def adjust_chromosome_genes(self, chromosome:Chromosome):
         if chromosome.as_int() > self.max_value:
-            chromosome.set_value(self.max_value)
+            chromosome.set_genes(self.max_value)
         
         if chromosome.as_int() < self.min_value:
-            chromosome.set_value(self.min_value)
+            chromosome.set_genes(self.min_value)
 
     def main(self):
         population:List[Chromosome] = self.generate_initial_population()
@@ -99,7 +99,7 @@ class GeneticAlgorithm(object):
                     children = parent_one.crossover(parent_two)
 
                     for child in children:
-                        self.adjust_chromosome_value(child)
+                        self.adjust_chromosome_genes(child)
 
                     offspring = [*offspring, *children]
                 else:
@@ -114,7 +114,7 @@ class GeneticAlgorithm(object):
 
                 if should_mutate:
                     child.mutate()
-                    self.adjust_chromosome_value(child)
+                    self.adjust_chromosome_genes(child)
             
             # printar offspring apos mutacao
             print('Offspring after mutation', offspring)
