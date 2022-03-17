@@ -1,4 +1,3 @@
-from __future__ import annotations
 from copy import deepcopy
 from random import randint, random
 from chromosome import Chromosome
@@ -124,6 +123,6 @@ class GeneticAlgorithm(object):
         print('\n' + '-'*20 + f'\nLAST POPULATION: {population}')
         print(f'BEST RESULT {self.get_best_result(population)}')
 
-
-ga = GeneticAlgorithm(mating_pool_size = 4, mutation_rate = .1, crossover_rate = 1, number_of_generations = 10, min_value = -10, max_value = 10)
-ga.main()
+if __name__ == '__main__':
+    genetic_algorithm = GeneticAlgorithm(mating_pool_size = 4, mutation_rate = .1, crossover_rate = 1, number_of_generations = 10, min_value = -10, max_value = 10)
+    genetic_algorithm.main()
