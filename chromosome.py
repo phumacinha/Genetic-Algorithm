@@ -1,5 +1,5 @@
 from __future__ import annotations
-from random import randint, random
+from random import randint
 from typing import List
 import numpy as np
 
@@ -8,7 +8,6 @@ class Chromosome(object):
     def __init__(self, num_of_genes: int, value):
         self.num_of_genes = num_of_genes
         self.value = value
-        self.is_alive = True
 
     def __repr__(self):
         return str(self.as_int())
@@ -40,14 +39,19 @@ class Chromosome(object):
 
         return self
 
+    def set_value(self, value: int):
+        abs_value_as_bin = bin(abs(value))[2:].rjust(4, '0')
+        signed = '1' if value < 0 else '0'
+        value_as_bin = signed + abs_value_as_bin
+
+        self.value = np.array(list(value_as_bin), dtype=int)
+
     def random(num_of_genes:int) -> Chromosome:
         value = np.random.randint(0, 2, num_of_genes) 
         return Chromosome(num_of_genes, value)
 
-    def kill(self):
-        self.is_alive = False
-
 chromo1 = Chromosome.random(num_of_genes = 5)
+print('chromo1', chromo1, chromo1.value)
 chromo2 = Chromosome.random(num_of_genes = 5)
 print('chromo1', chromo1, chromo1.value)
 print('chromo2', chromo2, chromo2.value)
