@@ -124,5 +124,5 @@ class GeneticAlgorithm(object):
         print(f'BEST RESULT {self.get_best_result(population)}')
 
 if __name__ == '__main__':
-    genetic_algorithm = GeneticAlgorithm(mating_pool_size = 4, mutation_rate = .1, crossover_rate = 1, number_of_generations = 5, min_value = -10, max_value = 10)
+    genetic_algorithm = GeneticAlgorithm(mating_pool_size = 4, mutation_rate = .01, crossover_rate = .7, number_of_generations = 5, min_value = -10, max_value = 10)
     genetic_algorithm.main()
